@@ -1,0 +1,1694 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 102,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Environment Statistics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "displayName": "",
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "super-light-blue",
+                  "index": 1,
+                  "text": "Vacant"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Deployed"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 10,
+        "x": 0,
+        "y": 1
+      },
+      "id": 2,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": false,
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "expr": "count(platform_release_ttl_ms{envmanager_namespace=\"$environment\"}) by (release_hash, envmanager_namespace)",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Environment status",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "displayName": "TTL",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "clockms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 10,
+        "y": 1
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_ttl_ms{envmanager_namespace=\"$environment\"}",
+          "instant": true,
+          "legendFormat": "TTL",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "displayName": "Time Left",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "clockms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 13,
+        "y": 1
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((platform_release_ttl_ms{envmanager_namespace=\"$environment\"} + platform_release_envmanager_updated_at_ms{envmanager_namespace=\"$environment\"}) - (timestamp(platform_release_ttl_ms{envmanager_namespace=\"$environment\"}) * 1000))",
+          "instant": true,
+          "legendFormat": "TTL",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "Created At",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "time:dddd HH:mm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_created_at_ms{envmanager_namespace=\"$environment\"}",
+          "instant": true,
+          "legendFormat": "TTL",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "Monitoring",
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "light-orange",
+                  "index": 1,
+                  "text": "Disabled"
+                },
+                "1": {
+                  "color": "light-green",
+                  "index": 0,
+                  "text": "Enabled"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 20,
+        "y": 1
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_envmanager_monitoring_enabled{envmanager_namespace=\"$environment\"}",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "autoscaling"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "Sentry",
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "light-orange",
+                  "index": 1,
+                  "text": "Disabled"
+                },
+                "1": {
+                  "color": "light-green",
+                  "index": 0,
+                  "text": "Enabled"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 22,
+        "y": 1
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_envmanager_sentry_enabled{envmanager_namespace=\"$environment\"}",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "sentry"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "Updated At",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "time:dddd HH:mm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 4
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_envmanager_updated_at_ms{envmanager_namespace=\"$environment\"}",
+          "instant": true,
+          "legendFormat": "TTL",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "displayName": "Spot",
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "light-orange",
+                  "index": 1,
+                  "text": "Disabled"
+                },
+                "1": {
+                  "color": "light-green",
+                  "index": 0,
+                  "text": "Enabled"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 15,
+          "valueSize": 15
+        },
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "platform_release_envmanager_spot_node_pool_enabled{envmanager_namespace=\"$environment\"}",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "spot"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 9,
+      "panels": [],
+      "title": "General Statistics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "Vacant"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "Deployed"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-blue",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "interval": "5m",
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "expr": "count(platform_release_ttl_ms) by (envmanager_namespace)",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{envmanager_namespace}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Environments",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 20
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 10,
+        "x": 0,
+        "y": 20
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "expr": "count(platform_release_ttl_ms)",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "Environments"
+        }
+      ],
+      "title": "Deployed environments",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "mode": "gradient",
+              "type": "color-background"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "match": "true",
+                "result": {
+                  "color": "light-green",
+                  "index": 0,
+                  "text": "Enabled"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "false",
+                "result": {
+                  "color": "light-orange",
+                  "index": 1,
+                  "text": "Disabled"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Created At"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 134
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Updated At"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 132
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "TTL"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 63
+              },
+              {
+                "id": "unit",
+                "value": "clockms"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time left, hours"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 146
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Autoscaling"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 97
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Namespace"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Monitoring"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 97
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time Left"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 97
+              },
+              {
+                "id": "unit",
+                "value": "clockms"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sentry"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 97
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Spot"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 97
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 14,
+        "x": 10,
+        "y": 20
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": [],
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_ttl_ms) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "ttl"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_created_at_ms) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "created_at"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_envmanager_updated_at_ms) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "updated_at"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_envmanager_monitoring_enabled) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "monitoring_enabled"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_envmanager_sentry_enabled) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "sentry_enabled"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min(platform_release_envmanager_spot_node_pool_enabled) by (envmanager_namespace)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "spot_instances_enabled"
+        }
+      ],
+      "title": "Current environments",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "envmanager_namespace",
+                "Value #ttl",
+                "Value #created_at",
+                "Value #updated_at",
+                "Value #autoscaling_enabled",
+                "Value #monitoring_enabled",
+                "Value #sentry_enabled",
+                "Value #spot_instances_enabled"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Time": "time_own"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "destroyed_at_ms",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value #updated_at"
+                }
+              },
+              "operator": "+",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value #ttl"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "time_left_ms",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "destroyed_at_ms"
+                }
+              },
+              "operator": "-",
+              "right": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "time_own"
+                }
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Value #created_at"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "Value #updated_at"
+              },
+              {
+                "destinationType": "boolean",
+                "targetField": "Value #monitoring_enabled"
+              },
+              {
+                "destinationType": "boolean",
+                "targetField": "Value #sentry_enabled"
+              },
+              {
+                "destinationType": "boolean",
+                "targetField": "Value #spot_instances_enabled"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "dddd HH:mm",
+            "timeField": "Value #updated_at",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        },
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "dddd HH:mm",
+            "timeField": "Value #created_at",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": false,
+              "Value #autoscaling_enabled": false,
+              "Value #created_at": false,
+              "Value #projects": false,
+              "Value #ttl": false,
+              "destroyed_at_ms": true,
+              "envmanager_namespace": false,
+              "projects": false,
+              "time_left_ms": false,
+              "time_own": true,
+              "ttl": false
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Value #autoscaling_enabled": 2,
+              "Value #created_at": 7,
+              "Value #monitoring_enabled": 3,
+              "Value #sentry_enabled": 4,
+              "Value #spot_instances_enabled": 1,
+              "Value #ttl": 5,
+              "Value #updated_at": 8,
+              "destroyed_at_ms": 10,
+              "envmanager_namespace": 0,
+              "time_left_ms": 6,
+              "time_own": 9
+            },
+            "renameByName": {
+              "TTL": "TTL, ",
+              "Time": "Time1",
+              "Value #autoscaling_enabled": "Autoscaling",
+              "Value #created_at": "Created At",
+              "Value #monitoring_enabled": "Monitoring",
+              "Value #projects": "Projects",
+              "Value #sentry_enabled": "Sentry",
+              "Value #spot_instances_enabled": "Spot",
+              "Value #ttl": "TTL",
+              "Value #updated_at": "Updated At",
+              "envmanager_namespace": "Namespace",
+              "projects": "Projects",
+              "time_left_hours": "Time left, hours",
+              "time_left_minutes": "Time Left, minutes",
+              "time_left_ms": "Time Left",
+              "ttl": "TTL, hours",
+              "ttl_hours": "TTL, hours"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 31
+      },
+      "id": 3,
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "topk(10, max(max_over_time(platform_release_ttl_ms[$__range])) by (envmanager_namespace)) / 3600000",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Top 10 environments by TTL, hours",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 31
+      },
+      "id": 13,
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "topk(10, count(last_over_time(platform_release_ttl_ms[$__range])) by (envmanager_namespace)) - 1",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Top 10 environments by number of deployments",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 16,
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "0b2ef0b3-af86-44ec-ad3f-77fcd6a9f7dc"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "topk(10, count(kube_node_labels{label_namespace!=\"\"}) by (label_namespace))",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Top 10 environments by number of nodes",
+      "type": "bargauge"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "finsight",
+    "development"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "Mimir operations-internal-use1-eks",
+          "value": "3416784b-7c73-4490-9a5d-25ff725f1601"
+        },
+        "includeAll": false,
+        "label": "Datasource",
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "andrii-ivaniuk",
+          "value": "andrii-ivaniuk"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "definition": "label_values(platform_release_ttl_ms,envmanager_namespace)",
+        "includeAll": false,
+        "label": "Environment",
+        "name": "environment",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(platform_release_ttl_ms,envmanager_namespace)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "utc",
+  "title": "Development environment status",
+  "uid": "43fe5f42-90aa-4017-8ead-912bcec8ba31",
+  "version": 27
+}
