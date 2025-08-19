@@ -109,6 +109,7 @@
         "pluginVersion": "12.2.0-258092",
         "targets": [
           {
+            "channel": "plugin/testdata/random-2s-stream",
             "queryType": "measurements",
             "refId": "A"
           }
