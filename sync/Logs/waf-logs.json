@@ -1,0 +1,745 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "edxgruizbjmkgb"
+  },
+  "spec": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations \u0026 Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "name": "${datasource}",
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 5,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 0,
+          "showHeader": true
+        },
+        "pluginVersion": "11.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "${datasource}"
+            },
+            "editorMode": "builder",
+            "expr": "sum by(action) (count_over_time({app=\"waf\"} | json [$__auto]))",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "WAF rules filter",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": true,
+                "action": false
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "Count",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 7,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 0,
+          "showHeader": true
+        },
+        "pluginVersion": "11.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "sum by(country) (count_over_time({app=\"waf\"} | json [$__auto]))",
+            "hide": false,
+            "queryType": "instant",
+            "refId": "B"
+          }
+        ],
+        "title": "Countries filter",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": true,
+                "Value #B": true,
+                "action": false
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "Count",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 0,
+          "y": 5
+        },
+        "id": 1,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "11.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "sum by(terminating_rule) (count_over_time({app=\"waf\", terminating_rule!~\".*capedge.*\"} | json [$__auto]))",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "WAF rules group",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": true,
+                "action": false
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "Count",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "default": false,
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": []
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 8,
+          "x": 0,
+          "y": 10
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "2.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "sum by(block_terminating_rule_id) (count_over_time({app=\"waf\", terminating_rule!~\".*capedge.*\"} | json [$__auto]))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Blocking WAF rules",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": false,
+                "action": false
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": []
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Value #A"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 8,
+          "x": 8,
+          "y": 10
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "2.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "topk(10, sum by(country) (count_over_time({app=\"waf\"} | json [$__auto])))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Top 10 countries",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": false,
+                "action": false
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": []
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 8,
+          "x": 16,
+          "y": 10
+        },
+        "id": 6,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "2.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "sum by(country, action) (count_over_time({app=\"waf\", terminating_rule!~\".*capedge.*\", action=\"BLOCK\"} [$__auto]))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Blocks by Country",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value #A": false,
+                "action": false,
+                "app": true,
+                "detected_level": true,
+                "http_method": true,
+                "http_source_id": true,
+                "service_name": true,
+                "terminating_rule": true
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "",
+                "action": "Action"
+              }
+            }
+          }
+        ],
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "scaleDistribution": {
+                "type": "linear"
+              }
+            },
+            "fieldMinMax": false
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 44,
+          "w": 24,
+          "x": 0,
+          "y": 20
+        },
+        "id": 8,
+        "options": {
+          "calculate": false,
+          "cellGap": 1,
+          "color": {
+            "exponent": 0.5,
+            "fill": "dark-orange",
+            "mode": "scheme",
+            "reverse": false,
+            "scale": "exponential",
+            "scheme": "PiYG",
+            "steps": 64
+          },
+          "exemplars": {
+            "color": "rgba(255,0,255,0.7)"
+          },
+          "filterValues": {
+            "le": 1e-9
+          },
+          "legend": {
+            "show": true
+          },
+          "rowsFrame": {
+            "layout": "auto"
+          },
+          "tooltip": {
+            "mode": "single",
+            "showColorScale": false,
+            "yHistogram": false
+          },
+          "yAxis": {
+            "axisPlacement": "right",
+            "reverse": false
+          }
+        },
+        "pluginVersion": "11.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "builder",
+            "expr": "count by(uri, terminating_rule) (count_over_time({app=\"waf\", terminating_rule!~\".*capedge.*\"} | json uri=\"httpRequest.uri\" [$__auto]))",
+            "hide": false,
+            "legendFormat": "{{terminating_rule}}: {{uri}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Blocked URI",
+        "type": "heatmap"
+      },
+      {
+        "datasource": {
+          "default": false,
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "gridPos": {
+          "h": 25,
+          "w": 24,
+          "x": 0,
+          "y": 64
+        },
+        "id": 2,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "94626631-b163-4fe1-a2b6-d281db8dd23f"
+            },
+            "editorMode": "code",
+            "expr": "{app=\"waf\", terminating_rule!~\".*capedge.*\"} | json  | line_format \"{{.action}} {{.country}} URI: {{.httpRequest_uri}} args: {{.httpRequest_args}}\"",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "WAF Logs",
+        "transparent": true,
+        "type": "logs"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "Loki internal-rnd-use1-eks",
+            "value": "8748732c-8ea1-4d00-a1ea-ef9aba8f7140"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "loki",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${datasource}"
+          },
+          "filters": [],
+          "hide": 0,
+          "name": "Filters",
+          "skipUrlSync": false,
+          "type": "adhoc"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-12h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "WAF logs",
+    "weekStart": ""
+  }
+}

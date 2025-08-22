@@ -1,0 +1,420 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "ddzjj6kc9qq68e"
+  },
+  "spec": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations \u0026 Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "default": false,
+          "type": "grafana-athena-datasource",
+          "uid": "c3a4e9dc-bfa0-4ecb-80ec-b5745bd69522"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "calcs": [
+              "min",
+              "mean",
+              "max"
+            ],
+            "displayMode": "table",
+            "placement": "right",
+            "showLegend": true,
+            "sortBy": "Mean",
+            "sortDesc": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.2.0",
+        "targets": [
+          {
+            "connectionArgs": {
+              "catalog": "$catalog",
+              "database": "athenacurcfn_default",
+              "region": "__default",
+              "resultReuseEnabled": false,
+              "resultReuseMaxAgeInMinutes": 60
+            },
+            "datasource": {
+              "type": "grafana-athena-datasource",
+              "uid": "c3a4e9dc-bfa0-4ecb-80ec-b5745bd69522"
+            },
+            "format": 1,
+            "rawSQL": "SELECT \n  DATE_FORMAT(\n    DATE_TRUNC(\n      'month', \"line_item_usage_start_date\"\n    ), \n    '%Y-%m-%d'\n  ) AS \"month\", \n  SPLIT_PART(\"line_item_resource_id\", '/', 3) AS \"namespace\", \n  SUM(\n    \"split_line_item_split_cost\" + \"split_line_item_unused_cost\"\n  ) AS \"total_cost\" \nFROM \n  athenacurcfn_default.default\nWHERE\n  \"line_item_operation\" = 'EKSPod-EC2'\n  AND\n  SPLIT_PART(\"line_item_resource_id\", '/', 2) = '$cluster'\nGROUP BY \n  1, \n  2\nORDER BY \n  \"month\" DESC, \n  \"namespace\", \n  \"total_cost\" DESC",
+            "refId": "A"
+          }
+        ],
+        "title": "Monthly",
+        "transformations": [
+          {
+            "id": "convertFieldType",
+            "options": {
+              "conversions": [
+                {
+                  "destinationType": "time",
+                  "targetField": "month"
+                }
+              ],
+              "fields": {}
+            }
+          },
+          {
+            "id": "prepareTimeSeries",
+            "options": {
+              "format": "multi"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "total_cost (.*)",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "default": false,
+          "type": "grafana-athena-datasource",
+          "uid": "c3a4e9dc-bfa0-4ecb-80ec-b5745bd69522"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "bars",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 10
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [
+              "min",
+              "mean",
+              "max"
+            ],
+            "displayMode": "table",
+            "placement": "right",
+            "showLegend": true,
+            "sortBy": "Mean",
+            "sortDesc": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.2.0",
+        "targets": [
+          {
+            "connectionArgs": {
+              "catalog": "$catalog",
+              "database": "athenacurcfn_default",
+              "region": "__default",
+              "resultReuseEnabled": false,
+              "resultReuseMaxAgeInMinutes": 60
+            },
+            "datasource": {
+              "type": "grafana-athena-datasource",
+              "uid": "c3a4e9dc-bfa0-4ecb-80ec-b5745bd69522"
+            },
+            "format": 1,
+            "rawSQL": "SELECT \n  DATE_FORMAT(\n    DATE_TRUNC(\n      'day', \"line_item_usage_start_date\"\n    ), \n    '%Y-%m-%d'\n  ) AS \"day\", \n  SPLIT_PART(\"line_item_resource_id\", '/', 3) AS \"namespace\", \n  SUM(\n    \"split_line_item_split_cost\" + \"split_line_item_unused_cost\"\n  ) AS \"total_cost\" \nFROM \n  athenacurcfn_default.default\nWHERE\n  \"line_item_operation\" = 'EKSPod-EC2'\n  AND\n  SPLIT_PART(\"line_item_resource_id\", '/', 2) = '$cluster'\nGROUP BY \n  1, \n  2\nORDER BY \n  \"day\" DESC, \n  \"namespace\", \n  \"total_cost\" DESC",
+            "refId": "A"
+          }
+        ],
+        "title": "Daily",
+        "transformations": [
+          {
+            "id": "convertFieldType",
+            "options": {
+              "conversions": [
+                {
+                  "destinationType": "time",
+                  "targetField": "day"
+                }
+              ],
+              "fields": {}
+            }
+          },
+          {
+            "id": "prepareTimeSeries",
+            "options": {
+              "format": "multi"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "total_cost (.*)",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Athena operations-internal-use1-eks",
+            "value": "c3a4e9dc-bfa0-4ecb-80ec-b5745bd69522"
+          },
+          "hide": 2,
+          "includeAll": false,
+          "label": "datasource",
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "grafana-athena-datasource",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "internal",
+            "value": "internal"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "tier",
+          "options": [
+            {
+              "selected": false,
+              "text": "live",
+              "value": "live"
+            },
+            {
+              "selected": true,
+              "text": "internal",
+              "value": "internal"
+            }
+          ],
+          "query": "live,internal",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "CurDataExport",
+            "value": "CurDataExport"
+          },
+          "hide": 2,
+          "includeAll": false,
+          "label": "catalog",
+          "multi": false,
+          "name": "catalog",
+          "options": [
+            {
+              "selected": true,
+              "text": "CurDataExport",
+              "value": "CurDataExport"
+            }
+          ],
+          "query": "CurDataExport",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "internal-development-euc1-eks",
+            "value": "internal-development-euc1-eks"
+          },
+          "datasource": {
+            "type": "grafana-athena-datasource",
+            "uid": "${datasource}"
+          },
+          "definition": "",
+          "hide": 0,
+          "includeAll": false,
+          "label": "cluster",
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "connectionArgs": {
+              "catalog": "$catalog",
+              "database": "athenacurcfn_default",
+              "region": "__default",
+              "resultReuseEnabled": false,
+              "resultReuseMaxAgeInMinutes": 60
+            },
+            "format": 1,
+            "rawSQL": "select DISTINCT SPLIT_PART(\"line_item_resource_id\", '/', 2)\nFROM \n  athenacurcfn_default.default\nWHERE\n  \"line_item_operation\" = 'EKSPod-EC2'\n  AND\n  SPLIT_PART(\"line_item_resource_id\", '/', 2) like '$tier%'\nLIMIT 10"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-60d",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "UTC",
+    "title": "Compute Cost Allocation",
+    "weekStart": ""
+  }
+}

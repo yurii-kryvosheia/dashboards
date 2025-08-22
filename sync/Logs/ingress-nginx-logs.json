@@ -1,0 +1,272 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "6d059ad7-3222-43ad-b4f4-c3290354e600"
+  },
+  "spec": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations \u0026 Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Ingress Nginx Logs",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "gridPos": {
+          "h": 21,
+          "w": 20,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": true
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "${datasource}"
+            },
+            "editorMode": "builder",
+            "expr": "{app=\"ingress-nginx\", component=\"controller\"} | json | __error__=`` |= `$line_filter` | line_format `{{.host}} {{.status}} {{.request_uri}} {{.request_method}}`",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Ingress Nginx Logs",
+        "type": "logs"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "id": 2,
+        "maxPerRow": 3,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "enablePagination": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 0,
+          "showHeader": false,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "name"
+            }
+          ]
+        },
+        "pluginVersion": "10.1.5",
+        "repeat": "label_filters",
+        "repeatDirection": "v",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "sum by($label_filters) (count_over_time({app=\"ingress-nginx\", component=\"controller\"} | json | __error__= `` [$__range]))",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Quick filter: $label_filters",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "pattern": "$label_filters"
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 41,
+    "style": "dark",
+    "tags": [
+      "logs",
+      "loki"
+    ],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Loki internal-rnd-use1-eks",
+            "value": "8748732c-8ea1-4d00-a1ea-ef9aba8f7140"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "loki",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "",
+            "value": ""
+          },
+          "hide": 0,
+          "label": "Line contains",
+          "name": "line_filter",
+          "options": [
+            {
+              "selected": true,
+              "text": "",
+              "value": ""
+            }
+          ],
+          "query": "",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${datasource}"
+          },
+          "filters": [],
+          "hide": 0,
+          "name": "Filters",
+          "skipUrlSync": false,
+          "type": "adhoc"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "hide": 2,
+          "includeAll": true,
+          "multi": true,
+          "name": "label_filters",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "request_method",
+              "value": "request_method"
+            },
+            {
+              "selected": false,
+              "text": "status",
+              "value": "status"
+            },
+            {
+              "selected": false,
+              "text": "host",
+              "value": "host"
+            }
+          ],
+          "query": "request_method, status, host",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "utc",
+    "title": "Ingress Nginx Logs",
+    "weekStart": ""
+  }
+}

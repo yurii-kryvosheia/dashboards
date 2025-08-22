@@ -1,0 +1,1139 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "827a43ab-abf4-4541-8cd4-9ce853272e5c"
+  },
+  "spec": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations \u0026 Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 1,
+    "id": null,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "panels": [],
+        "title": "General Environment Statistics",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 1
+        },
+        "id": 2,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "text": {},
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "count(keda_scaler_active{exported_namespace=\"$namespace\"}) * 100 / count(kube_deployment_labels{namespace=\"$namespace\"}) ",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Autoscaling coverage (%)",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 1
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(keda_resource_registered_total{exported_namespace=\"$namespace\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Number of ScaledObjects",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 1
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(keda_scaled_object_errors_total{exported_namespace=\"$namespace\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ScaledObject Errors",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 1
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "count(kube_deployment_labels{namespace=\"$namespace\"}) ",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Number of Deployments",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": []
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 9
+        },
+        "id": 10,
+        "options": {
+          "displayLabels": [
+            "value"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum by (type) (keda_trigger_registered_total{})",
+            "instant": false,
+            "legendFormat": "{{type}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Number of Triggers by Type (Entire cluster)",
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 9
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "count (\n  kube_deployment_labels{namespace=\"$namespace\"}\n  unless on(namespace, deployment)\n  label_replace(kube_horizontalpodautoscaler_info{namespace=\"$namespace\"}, \"deployment\", \"$1\", \"scaletargetref_name\", \"(.*)\")\n)",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Number of Deployments without Autoscaling",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "filterable": true,
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.hidden",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Value"
+              },
+              "properties": [
+                {
+                  "id": "custom.hidden",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "id": 11,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": [],
+            "reducer": [],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "count by (app, deployment) (\n  kube_deployment_labels{namespace=\"$namespace\"}\n  unless on(namespace, deployment)\n  label_replace(kube_horizontalpodautoscaler_info{namespace=\"$namespace\"}, \"deployment\", \"$1\", \"scaletargetref_name\", \"(.*)\")\n)",
+            "format": "table",
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "A"
+          }
+        ],
+        "title": "Deployments without autoscaling",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 17
+        },
+        "id": 13,
+        "options": {
+          "legend": {
+            "calcs": [
+              "min",
+              "max",
+              "mean"
+            ],
+            "displayMode": "table",
+            "placement": "right",
+            "showLegend": true,
+            "sortBy": "Max",
+            "sortDesc": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "kube_horizontalpodautoscaler_status_current_replicas{namespace=\"$namespace\"}\n  + on(horizontalpodautoscaler)\n    group_left(metric_name)\n    sum(kube_horizontalpodautoscaler_spec_target_metric{namespace=\"$namespace\", metric_name!~\"cpu|memory\"}) by (horizontalpodautoscaler, metric_name) * 0\nor\nkube_horizontalpodautoscaler_status_current_replicas{namespace=\"$namespace\"}\n  + on(horizontalpodautoscaler)\n    group_left(metric_name)\n    sum(kube_horizontalpodautoscaler_spec_target_metric{namespace=\"$namespace\", metric_name=\"cpu\"}) by (horizontalpodautoscaler, metric_name) * 0\nor\nkube_horizontalpodautoscaler_status_current_replicas{namespace=\"$namespace\"}\n  + on(horizontalpodautoscaler)\n    group_left(metric_name)\n    sum(kube_horizontalpodautoscaler_spec_target_metric{namespace=\"$namespace\", metric_name=\"memory\"}) by (horizontalpodautoscaler, metric_name) * 0",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "{{horizontalpodautoscaler}} ({{metric_name}})",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Replicas over time",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 25
+        },
+        "id": 3,
+        "panels": [],
+        "repeat": "scaledObjects",
+        "title": "Autoscaling Panel For Deployment: $scaledObjects",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "id": 9,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "sum(kube_horizontalpodautoscaler_status_current_replicas{namespace=\"$namespace\",horizontalpodautoscaler=\"keda-hpa-$scaledObjects\"})",
+            "hide": false,
+            "legendFormat": "Current replicas",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(kube_horizontalpodautoscaler_spec_max_replicas{namespace=\"$namespace\",horizontalpodautoscaler=\"keda-hpa-$scaledObjects\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Max replicas",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "sum(kube_horizontalpodautoscaler_spec_min_replicas{namespace=\"$namespace\",horizontalpodautoscaler=\"keda-hpa-$scaledObjects\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Min replicas",
+            "range": true,
+            "refId": "F"
+          }
+        ],
+        "title": "Current/Min/Max Replicas",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 24,
+          "x": 0,
+          "y": 36
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "(\n  sum(keda_scaler_metrics_value{\n    exported_namespace=\"$namespace\",\n    scaledObject=\"$scaledObjects\",\n    scaler!~\"cpu|memory|prometheusScaler\"\n  })\n)\nor\nsum by(scaledObject) (\n  keda_scaler_metrics_value{\n    exported_namespace=\"$namespace\",\n    scaler=\"prometheusScaler\",\n    scaledObject=\"$scaledObjects\"\n  }\n)\n/\non(scaledObject)\nlabel_replace(\n  kube_horizontalpodautoscaler_status_current_replicas{namespace=\"$namespace\"},\n  \"scaledObject\", \"$1\", \"horizontalpodautoscaler\", \"keda-hpa-(.*)\"\n)\nor\n  sum by (workload) (\n    node_namespace_pod_container:container_${scaler}_usage_seconds_total:sum_irate{\n      namespace=\"$namespace\"\n    }\n    * on(namespace, pod)\n      group_left(workload)\n      namespace_workload_pod:kube_pod_owner:relabel{\n        namespace=\"$namespace\",\n        workload=\"$scaledObjects\"\n      }\n  )\nor\n  sum(\n    container_${scaler}_working_set_bytes{\n      namespace=\"$namespace\"\n    }\n    * on(namespace, pod)\n      group_left(workload, workload_type)\n      namespace_workload_pod:kube_pod_owner:relabel{\n        namespace=\"$namespace\",\n        workload=\"$scaledObjects\"\n      }\n)/1024/1024",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Current metric value",
+            "range": true,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "(kube_horizontalpodautoscaler_spec_target_metric{\n  horizontalpodautoscaler=\"keda-hpa-$scaledObjects\",\n  metric_name!~\"cpu|memory\",\n  namespace=\"$namespace\"\n})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Scaling value threshold",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "editorMode": "code",
+            "expr": "(sum by (namespace) (\n  kube_pod_container_resource_requests{\n    namespace=\"$namespace\",\n    resource=\"$scaler\"\n  }\n  * on(namespace, pod)\n    group_left(workload)\n    namespace_workload_pod:kube_pod_owner:relabel{\n      namespace=\"$namespace\",\n      workload=\"$scaledObjects\"\n    }\n)\n*\n( sum by (namespace) (\n  kube_horizontalpodautoscaler_spec_target_metric{\n    horizontalpodautoscaler=\"keda-hpa-$scaledObjects\",\n    metric_name=\"$scaler\",\n    namespace=\"$namespace\"\n  } / 100)\n) / 1024 / 1024\nand \nsum by (namespace) (\n  kube_pod_container_resource_requests{\n    namespace=\"$namespace\",\n    resource=\"$scaler\"\n  }\n  * on(namespace, pod)\n    group_left(workload)\n    namespace_workload_pod:kube_pod_owner:relabel{\n      namespace=\"$namespace\",\n      workload=\"$scaledObjects\"\n    }\n)\n*\n( sum by (namespace) (\n  kube_horizontalpodautoscaler_spec_target_metric{\n    horizontalpodautoscaler=\"keda-hpa-$scaledObjects\",\n    metric_name=\"$scaler\",\n    namespace=\"$namespace\"\n  } / 100)\n) \u003e 1000\n)\nor\nsum by (namespace) (\n  kube_pod_container_resource_requests{\n    namespace=\"$namespace\",\n    resource=\"$scaler\"\n  }\n  * on(namespace, pod)\n    group_left(workload)\n    namespace_workload_pod:kube_pod_owner:relabel{\n      namespace=\"$namespace\",\n      workload=\"$scaledObjects\"\n    }\n)\n*\n( sum by (namespace) (\n  kube_horizontalpodautoscaler_spec_target_metric{\n    horizontalpodautoscaler=\"keda-hpa-$scaledObjects\",\n    metric_name=\"$scaler\",\n    namespace=\"$namespace\"\n  } / 100)\n)",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Scaling value threshold",
+            "range": true,
+            "refId": "E"
+          }
+        ],
+        "title": "Current metric value / Scaling metric threshold",
+        "type": "timeseries"
+      }
+    ],
+    "preload": false,
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "text": "Mimir internal-integration-use1-eks",
+            "value": "6bb7451a-2038-48c1-b187-3bf1a26bbfeb"
+          },
+          "name": "datasource",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "integration",
+            "value": "integration"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "definition": "label_values(keda_scaler_active,exported_namespace)",
+          "name": "namespace",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(keda_scaler_active,exported_namespace)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "definition": "label_values(keda_scaler_active,scaler)",
+          "hide": 2,
+          "includeAll": true,
+          "name": "scalerExternal",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(keda_scaler_active,scaler)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "definition": "label_values(keda_trigger_registered_total,type)",
+          "hide": 2,
+          "includeAll": true,
+          "name": "scalerInternal",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(keda_trigger_registered_total,type)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "/(cpu|memory)/",
+          "type": "query"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "redisStreamsScaler",
+            "value": "redisStreamsScaler"
+          },
+          "includeAll": false,
+          "name": "scaler",
+          "options": [
+            {
+              "selected": false,
+              "text": "postgreSQLScaler",
+              "value": "postgreSQLScaler"
+            },
+            {
+              "selected": false,
+              "text": "prometheusScaler",
+              "value": "prometheusScaler"
+            },
+            {
+              "selected": false,
+              "text": "rabbitMQScaler",
+              "value": "rabbitMQScaler"
+            },
+            {
+              "selected": false,
+              "text": "redisScaler",
+              "value": "redisScaler"
+            },
+            {
+              "selected": true,
+              "text": "redisStreamsScaler",
+              "value": "redisStreamsScaler"
+            },
+            {
+              "selected": false,
+              "text": "cpu",
+              "value": "cpu"
+            },
+            {
+              "selected": false,
+              "text": "memory",
+              "value": "memory"
+            }
+          ],
+          "query": "${scalerExternal:raw},${scalerInternal:raw}",
+          "type": "custom"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "definition": "label_values(keda_scaler_active{scaler=~\"$scaler\"},scaledObject)",
+          "hide": 2,
+          "includeAll": true,
+          "name": "externalScaledObject",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(keda_scaler_active{scaler=~\"$scaler\"},scaledObject)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "definition": "label_values(kube_horizontalpodautoscaler_spec_target_metric{metric_name=~\"$scaler\", namespace=\"$namespace\"},horizontalpodautoscaler)",
+          "hide": 2,
+          "includeAll": true,
+          "name": "internalScaledObject",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(kube_horizontalpodautoscaler_spec_target_metric{metric_name=~\"$scaler\", namespace=\"$namespace\"},horizontalpodautoscaler)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "/^keda-hpa-(?\u003cvalue\u003e.*)$/",
+          "type": "query"
+        },
+        {
+          "allowCustomValue": false,
+          "current": {
+            "text": [
+              "integ-condor-q-event-store-write"
+            ],
+            "value": [
+              "integ-condor-q-event-store-write"
+            ]
+          },
+          "includeAll": false,
+          "multi": true,
+          "name": "scaledObjects",
+          "options": [
+            {
+              "selected": true,
+              "text": "integ-condor-q-event-store-write",
+              "value": "integ-condor-q-event-store-write"
+            },
+            {
+              "selected": false,
+              "text": "integ-condor-q-excel-reports-export",
+              "value": "integ-condor-q-excel-reports-export"
+            },
+            {
+              "selected": false,
+              "text": "integ-condor-q-migrate-account-data",
+              "value": "integ-condor-q-migrate-account-data"
+            },
+            {
+              "selected": false,
+              "text": "integ-condor-q-user-permissions-queue",
+              "value": "integ-condor-q-user-permissions-queue"
+            }
+          ],
+          "query": "${externalScaledObject:raw},${internalScaledObject:raw}",
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "UTC",
+    "title": "Keda"
+  }
+}
